@@ -17,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: true,
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
       extra: {
         ssl: {
           rejectUnauthorized: false,
