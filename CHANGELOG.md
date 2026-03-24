@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/nicolassanchez1/auth-service/compare/v0.4.0...v0.5.0) (2026-03-24)
+
+
+### Features
+
+* remove extra SSL ([a4064cf](https://github.com/nicolassanchez1/auth-service/commit/a4064cf2357bf22bc29753bf1dc70ab23ed947af))
+
+
+
 # [0.4.0](https://github.com/nicolassanchez1/auth-service/compare/v0.3.0...v0.4.0) (2026-03-24)
 
 
