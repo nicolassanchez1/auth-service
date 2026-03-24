@@ -18,11 +18,6 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true,
       ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
     }),
     AuthModule,
   ],
