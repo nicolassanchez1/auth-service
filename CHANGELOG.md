@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/nicolassanchez1/auth-service/compare/v0.3.0...v0.4.0) (2026-03-24)
+
+
+### Features
+
+* validate SSL ([61a4645](https://github.com/nicolassanchez1/auth-service/commit/61a4645f3384e049cf52a65b1605c4b4b2825fc3))
+
+
+
 # [0.3.0](https://github.com/nicolassanchez1/auth-service/compare/v0.2.0...v0.3.0) (2026-03-24)
 
 
