@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, ConflictException, UnauthorizedException, BadGatewayException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -73,5 +73,51 @@ export class AuthService {
 
   async findByEmail(email: string): Promise<User | null> {
     return await this.userRepository.findOne({ where: { email } });
+  }
+
+  // ====================================================================
+  // NUEVA INTEGRACIÓN: Proxy para API Externa (Vanguardia)
+  // ====================================================================
+  async getVanguardiaProfile(email: string) {
+    if (!email) {
+      throw new BadGatewayException('El parámetro de correo es obligatorio');
+    }
+
+    // 1. Construir el objeto JSON y codificarlo para la URL
+    const queryObj = { mail: email };
+    const encodedQuery = encodeURIComponent(JSON.stringify(queryObj));
+
+    // 2. Ensamblar la URL objetivo con todos los params fijos
+    const targetUrl = `https://www.vanguardia.com/pf/api/v3/content/fetch/vg-user-data?query=${encodedQuery}&d=421&mxId=00000000&_website=vanguardia`;
+
+    try {
+      // 3. Hacer la petición servidor a servidor (Sin problemas de CORS)
+      const response = await fetch(targetUrl, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'User-Agent': 'Noova360-Integration-Proxy/1.0',
+        },
+      });
+
+      if (!response.ok) {
+        // Lanzamos el error para que el bloque catch lo atrape y lo formatee
+        throw new Error(`External API responded with status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      return {
+        success: true,
+        data: data,
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      // Aquí idealmente usarías un Logger de NestJS: this.logger.error(...)
+      console.error('Proxy Error [Vanguardia]:', errorMessage);
+
+      // Retornamos un 502 Bad Gateway al frontend
+      throw new BadGatewayException('No se pudo obtener el perfil del proveedor externo');
+    }
   }
 }
