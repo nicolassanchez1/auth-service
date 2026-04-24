@@ -1,3 +1,17 @@
+# [0.6.0](https://github.com/nicolassanchez1/auth-service/compare/v0.5.0...v0.6.0) (2026-04-24)
+
+
+### Bug Fixes
+
+* response ([3e34bce](https://github.com/nicolassanchez1/auth-service/commit/3e34bcead1aa21d58ba1d537483a5b26123e828c))
+
+
+### Features
+
+* add new api ([16bd7b8](https://github.com/nicolassanchez1/auth-service/commit/16bd7b8733151c9e0f10bf8039a0515e29b16ebe))
+
+
+
 # [0.5.0](https://github.com/nicolassanchez1/auth-service/compare/v0.4.0...v0.5.0) (2026-03-24)
 
 
@@ -37,15 +51,6 @@
 ### Features
 
 * install class-validar and typeorm ([0f63387](https://github.com/nicolassanchez1/auth-service/commit/0f63387aa240714174bb8eaa67578e5d5e0ffab8))
-
-
-
-# [0.1.0](https://github.com/nicolassanchez1/auth-service/compare/2f85de8d4ece82101857c37cd8fa6a543ae4c8d5...v0.1.0) (2026-03-23)
-
-
-### Features
-
-* config linter and prettier ([2f85de8](https://github.com/nicolassanchez1/auth-service/commit/2f85de8d4ece82101857c37cd8fa6a543ae4c8d5))
 
 
 
