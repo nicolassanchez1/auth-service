@@ -1,4 +1,9 @@
-import { Injectable, ConflictException, UnauthorizedException, BadGatewayException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+  BadGatewayException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -6,6 +11,10 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from './entities/user';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
+
+export interface VanguardiaProfileResponse {
+  [key: string]: unknown;
+}
 
 @Injectable()
 export class AuthService {
@@ -96,7 +105,7 @@ export class AuthService {
         method: 'GET',
         headers: {
           Accept: 'application/json',
-          'User-Agent': 'Noova360-Integration-Proxy/1.0',
+          'User-Agent': 'Integration-Proxy/1.0',
         },
       });
 
@@ -105,7 +114,7 @@ export class AuthService {
         throw new Error(`External API responded with status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as VanguardiaProfileResponse;
 
       return {
         success: true,
